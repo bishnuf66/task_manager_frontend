@@ -19,7 +19,6 @@ interface AddTaskProps {
 const AddTask: React.FC<AddTaskProps> = ({ isOpen, onClose }) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [subTasks, setSubTasks] = useState<string[]>([]);
   const [startDate, setStartDate] = useState<string>("");
   const [dueDate, setDueDate] = useState<string>("");
   const [priority, setPriority] = useState<TaskPriority>(TaskPriority.LOW);
@@ -27,14 +26,7 @@ const AddTask: React.FC<AddTaskProps> = ({ isOpen, onClose }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createTask(
-        title,
-        description,
-        startDate,
-        dueDate,
-        priority,
-        subTasks
-      );
+      await createTask(title, description, startDate, dueDate, priority);
       toast.success("Task created successfully!");
       setTitle("");
       setDescription("");

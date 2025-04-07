@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Trash2,
   CheckCircle,
   Circle,
   Search,
@@ -26,7 +25,7 @@ const TaskList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
-  const [priorityFilter, setPriorityFilter] = useState("ALL");
+
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -97,10 +96,7 @@ const TaskList: React.FC = () => {
     const matchesStatus =
       statusFilter === "ALL" || task.status === statusFilter;
 
-    const matchesPriority =
-      priorityFilter === "ALL" || task.priority === priorityFilter;
-
-    return matchesSearch && matchesStatus && matchesPriority;
+    return matchesSearch && matchesStatus;
   });
 
   if (loading) {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../services/authService";
 import RegisterForm from "./RegisterForm"; // Importing the RegisterForm
-import { Lock, User } from "lucide-react"; // Importing icons
+import { Lock, Mail } from "lucide-react"; // Importing icons
 import toast from "react-hot-toast";
 import { setCookie } from "../utils/cookieutil";
 import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
@@ -92,7 +92,7 @@ const LoginForm: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                    <User className="h-5 w-5 text-gray-500" />
+                    <Mail className="h-5 w-5 text-gray-500" />
                   </div>
                 </div>
                 {emailError && (
