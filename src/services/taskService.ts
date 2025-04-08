@@ -1,33 +1,40 @@
-import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL
+// api/task.ts
+import api from './api';  // Import the axios instance
 
 // Fetch all tasks
 export const fetchTasks = async () => {
   try {
-    const response = await axios.get(`${API_URL}/tasks`);
+    const response = await api.get('/tasks');  // Use api here
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-
-interface TaskUpdatePayload {
-  title?: string;
-  description?: string;
-  priority?: string;
-  startDate?: string;
-  dueDate?: string;
-  isCompleted?: boolean;
+interface TaskCreatePayload {
+  title: string;
+  description: string;
+  startDate: string;
+  dueDate: string;
+  priority: string;
 }
-// Create a new task
-export const createTask = async (title: string, description: string ,startDate:string, dueDate:string, priority:string,) => {
 
+// Create a new task
+export const createTask = async ({
+  title,
+  description,
+  startDate,
+  dueDate,
+  priority,
+}: TaskCreatePayload) => {
   try {
-    const response = await axios.post(`${API_URL}/tasks`, { title, description, startDate,
+    const response = await api.post('/tasks', {
+      title,
+      description,
+      startDate,
       dueDate,
-      priority, });
+      priority,
+    });
     return response.data;
   } catch (error) {
     throw error;
@@ -49,20 +56,19 @@ export const updateTask = async (
   updatedFields: TaskUpdatePayload
 ) => {
   try {
-    const response = await axios.put(`${API_URL}/tasks/${taskId}`, updatedFields);
+    const response = await api.put(`/tasks/${taskId}`, updatedFields);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
+
 // Delete a task
 export const deleteTask = async (taskId: string) => {
   try {
-    const response = await axios.delete(`${API_URL}/tasks/${taskId}`);
+    const response = await api.delete(`/tasks/${taskId}`);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
-
-

@@ -1,19 +1,17 @@
-import axios from 'axios';
-const API_URL = import.meta.env.VITE_API_URL
-
+import api from "./api";
 export const login = async (email: string, password: string) => {
   try {
-    const response = await axios.post(`${API_URL}/login`, { email, password });
+    const response = await api.post('/login', { email, password });
     return response.data;
   } catch (error) {
-    console.error("Login error:", error); // Log the error for debugging
+    console.error("Login error:", error);
     throw error;
   }
 };
 
 export const register = async (userName: string, email: string, password: string) => {
   try {
-    const response = await axios.post(`${API_URL}/register`, { userName, email, password });
+    const response = await api.post('/register', { userName, email, password });
     return response.data;
   } catch (error) {
     throw error;

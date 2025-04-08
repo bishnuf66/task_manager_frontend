@@ -47,7 +47,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
       </button>
       <div className="bg-indigo-600 py-4  rounded-t-lg">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-          Sign in to your account
+          Register new account
         </h2>
       </div>
 
