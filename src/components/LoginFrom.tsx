@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { login } from "../services/authService";
-import RegisterForm from "./RegisterForm"; // Importing the RegisterForm
-import { Lock, Mail } from "lucide-react"; // Importing icons
+import RegisterForm from "./RegisterForm";
+import { Lock, Mail } from "lucide-react";
 import toast from "react-hot-toast";
 import { setCookie } from "../utils/cookieutil";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -51,8 +51,8 @@ const LoginForm: React.FC = () => {
         toast.error(data.message);
       }
     } catch (error: any) {
-      console.log(error);
-      toast.error("Login failed! " + error.message);
+      console.log(error.response);
+      toast.error("Login failed! " + error?.response?.data?.message);
     }
   };
 

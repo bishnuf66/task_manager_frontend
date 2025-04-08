@@ -1,54 +1,87 @@
-# React + TypeScript + Vite
+# TaskMaster - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The frontend of the TaskMaster application is built with **React** and **Vite**, utilizing **Tailwind CSS** for responsive design. It provides an intuitive interface for users to interact with the backend, allowing them to manage their tasks efficiently. The application supports creating, viewing, and deleting tasks with proper error handling and loading states to ensure a smooth user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend Framework**: React
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **API Integration**: Fetching data via REST API calls to the backend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Frontend Setup Instructions
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Prerequisites
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Make sure you have the following tools installed before setting up the frontend:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [Node.js](https://nodejs.org/) (v14 or later)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Steps to Run the Frontend Locally
+
+1. **Clone the repository:**
+
+   Clone the repository using Git:
+
+   ```bash
+   git clone https://github.com/bishnuf66/task_manager_frontend.git
+   cd task_manager_frontend
+   ```
+
+2. **Install dependencies:**
+
+   After cloning the repository, install the required packages:
+
+   ```bash
+   npm install
+   ```
+
+   or if you're using Yarn:
+
+   ```bash
+   yarn install
+   ```
+
+3. **Configure environment variables:**
+
+   Create a `.env.local` file in the root of the frontend directory and add the following environment variables:
+
+   ```env
+   VITE_API_URL=http://localhost:8000/api/v1
+   ```
+
+   Replace `http://localhost:8000/api/v1` with the actual API URL of your backend.
+
+4. **Start the development server:**
+
+   Run the development server with the following command:
+
+   ```bash
+   npm run dev
+   ```
+
+   or with Yarn:
+
+   ```bash
+   yarn dev
+   ```
+
+   This will run the frontend application locally at `http://localhost:5173`.
+
+---
+
+## Frontend Features
+
+- **Task Management**: Users can view, create, and delete tasks via a clean and easy-to-use interface.
+- **Responsive Design**: The frontend is built using Tailwind CSS, ensuring that the application adapts well to various screen sizes and devices (mobile-first design).
+- **Loading Indicators**: Display loading indicators to enhance the user experience when data is being fetched or updated.
+- **Error Handling**: Proper error messages are displayed to users if there’s an issue, such as when a task cannot be deleted.
+
+---
+
+## Conclusion
+
+The frontend of TaskMaster provides a seamless and responsive user experience. The app allows users to manage tasks effectively while offering a clean and intuitive interface. Once both the frontend and backend are set up, users can securely create, manage, and delete tasks.

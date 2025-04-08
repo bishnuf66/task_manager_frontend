@@ -1,4 +1,4 @@
-// Set a cookie (expires in `days`)
+// Set a cookie (expires in 1 day )
 export const setCookie = (name: string, value: string, days = 1) => {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
     document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;

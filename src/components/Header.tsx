@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { getCookie } from "../utils/cookieutil";
+import { getCookie, deleteCookie } from "../utils/cookieutil";
+
 import { jwtDecode } from "jwt-decode";
 import {
   ChevronDown,
@@ -13,7 +14,6 @@ import {
 interface DecodedToken {
   userName: string;
   email: string;
-  // Add more fields if needed
 }
 
 const Header: React.FC = () => {
@@ -37,34 +37,11 @@ const Header: React.FC = () => {
     }
   }, [token]);
 
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setDropdownOpen(false);
-      }
-
-      if (
-        notificationRef.current &&
-        !notificationRef.current.contains(event.target as Node)
-      ) {
-        setNotificationOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   const firstLetter = userName.charAt(0).toUpperCase();
 
   const handleLogout = () => {
-    console.log("Logging out...");
     // Remove token/cookies and redirect to login
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    deleteCookie("token");
     window.location.href = "/login";
   };
 

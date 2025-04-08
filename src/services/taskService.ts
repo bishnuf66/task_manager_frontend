@@ -1,10 +1,9 @@
-// api/task.ts
-import api from './api';  // Import the axios instance
+import api from './api';
 
 // Fetch all tasks
 export const fetchTasks = async () => {
   try {
-    const response = await api.get('/tasks');  // Use api here
+    const response = await api.get('/tasks');
     return response.data;
   } catch (error) {
     throw error;

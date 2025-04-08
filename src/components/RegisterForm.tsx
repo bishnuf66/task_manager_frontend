@@ -1,11 +1,10 @@
-// src/components/RegisterForm.tsx
 import React, { useState } from "react";
 import { register } from "../services/authService";
-import { User, Lock, Mail, X } from "lucide-react"; // Importing icons
+import { User, Lock, Mail, X } from "lucide-react"; 
 import toast from "react-hot-toast";
 
 interface RegisterFormProps {
-  onClose: () => void; // Adding onClose to handle the close functionality
+  onClose: () => void;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {

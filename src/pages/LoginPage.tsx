@@ -1,4 +1,3 @@
-// src/pages/LoginPage.tsx
 import LoginForm from "../components/LoginFrom";
 
 const LoginPage: React.FC = () => {
