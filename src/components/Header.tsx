@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { getCookie, deleteCookie } from "../utils/cookieutil";
+import { useNavigate } from "react-router-dom";
 
 import { jwtDecode } from "jwt-decode";
 import {
@@ -17,6 +18,7 @@ interface DecodedToken {
 }
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   const token = getCookie("token");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
@@ -42,7 +44,7 @@ const Header: React.FC = () => {
   const handleLogout = () => {
     // Remove token/cookies and redirect to login
     deleteCookie("token");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   return (
