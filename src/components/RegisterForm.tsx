@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { register } from "../services/authService";
-import { User, Lock, Mail, X } from "lucide-react"; 
+import { User, Lock, Mail, X } from "lucide-react";
 import toast from "react-hot-toast";
 
 interface RegisterFormProps {
@@ -12,6 +12,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [agreeTerms, setAgreeTerms] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
     }
 
     try {
+      setLoading(true);
       const data = await register(userName, email, password);
       if (data.success === false) {
         toast.error(data.message);
@@ -31,6 +33,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -129,9 +133,38 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
         <div>
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            disabled={loading}
+            className={`group relative w-full flex justify-center items-center py-2 px-4 border border-transparent font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Register
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+                Registering...
+              </>
+            ) : (
+              "Register"
+            )}
           </button>
         </div>
       </form>
